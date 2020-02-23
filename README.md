@@ -11,5 +11,5 @@
 
 Связанные ссылки:
 
-* Доска на Trello: https://trello.com/b/clj9L8Mj
+* Доска на Trello: https://trello.com/b/clj9L8Mj/yourmovie
 * Доска на Miro: https://miro.com/app/board/o9J_kvWaZB4=/
