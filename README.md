@@ -9,6 +9,10 @@
 
 ## Документация:
 
+* ТЗ: 
+  * [ТЗ.pdf](https://github.com/SteamDiver/YourMovies/blob/master/Documentation/%D0%A2%D0%97.pdf)
+  * [ТЗ.docx](https://github.com/SteamDiver/YourMovies/blob/master/Documentation/%D0%A2%D0%97.docx)
+
 ## Связанные ссылки:
 
 * Доска на Trello: [YourMovies](https://trello.com/b/clj9L8Mj/yourmovie)
