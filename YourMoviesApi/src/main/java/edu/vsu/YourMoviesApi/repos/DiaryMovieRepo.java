@@ -11,7 +11,7 @@ import java.util.List;
 public interface DiaryMovieRepo extends CrudRepository<DiaryMovie, Long> {
     DiaryMovie getById(Long id);
 
-    DiaryMovie getByMovieDbIdAndUser(int name, MovieUser user);
+    DiaryMovie getByMovieDbIdAndUser(int id, MovieUser user);
 
     List<DiaryMovie> getAllByUser(MovieUser user);
 }

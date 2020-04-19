@@ -2,6 +2,7 @@ package edu.vsu.YourMoviesApi.controller;
 
 import edu.vsu.YourMoviesApi.domain.DiaryMovie;
 import edu.vsu.YourMoviesApi.domain.FavoriteGenre;
+import edu.vsu.YourMoviesApi.domain.MovieDbGenre;
 import edu.vsu.YourMoviesApi.domain.dto.GenreDTO;
 import edu.vsu.YourMoviesApi.domain.dto.MovieDTO;
 import edu.vsu.YourMoviesApi.service.MovieDbService;
@@ -32,11 +33,11 @@ public class YourMoviesApiController {
     }
 
     @GetMapping("recommendation/movie/{page}")
-    public ResponseEntity<String> genreRecommendation(@RequestParam List<String> genres, @PathVariable int page) {
-        return movieDbService.genreRecommendation(genres, page);
+    public ResponseEntity<List<MovieDTO>> genreRecommendation(@RequestParam List<String> genres, @PathVariable int page) {
+        return ResponseEntity.ok().body(movieDbService.genreRecommendation(genres, page));
     }
 
-    @GetMapping("movie/{movieId}")
+    @GetMapping("movie/info/{movieId}")
     public ResponseEntity<?> getMovieInfo(@PathVariable int movieId) {
         try {
             return ResponseEntity.ok().body(movieDbService.getMovieInfo(movieId));
@@ -48,6 +49,11 @@ public class YourMoviesApiController {
     @PostMapping("genre/movie")
     public void updateMovieDbGenre() throws IOException {
         movieDbService.updateDbGenres();
+    }
+
+    @GetMapping("genre/all")
+    public ResponseEntity<List<MovieDbGenre>> getSupportedGenres() {
+        return ResponseEntity.ok().body(movieDbService.getSupportedGenres());
     }
 
     @PostMapping("genre")
@@ -115,6 +121,15 @@ public class YourMoviesApiController {
     public ResponseEntity<?> getDiaryMovies(@RequestHeader String authorization) {
         try {
             return ResponseEntity.ok().body(movieUserService.getDiaryMovies(authorization));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("movie/{movieId}")
+    public ResponseEntity<?> getDiaryMovie(@RequestHeader String authorization, @PathVariable int movieId) {
+        try {
+            return ResponseEntity.ok().body(movieUserService.getDiaryMovie(authorization, movieId));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

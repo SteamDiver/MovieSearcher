@@ -12,6 +12,7 @@ public class MovieDTO {
     private int revenue;
     private int runtime;
     private float voteAverage;
+    private byte[] p;
 
     private String poster;
 
@@ -111,6 +112,14 @@ public class MovieDTO {
         this.voteAverage = voteAverage;
     }
 
+    public byte[] getP() {
+        return p;
+    }
+
+    public void setP(byte[] p) {
+        this.p = p;
+    }
+
 
     public static final class MovieDTOBuilder {
         private int id;
@@ -125,6 +134,7 @@ public class MovieDTO {
         private int runtime;
         private float voteAverage;
         private String poster;
+        private byte[] p;
 
         private MovieDTOBuilder() {
         }
@@ -137,6 +147,12 @@ public class MovieDTO {
             this.id = id;
             return this;
         }
+
+        public MovieDTOBuilder withP(byte[] p) {
+            this.p = p;
+            return this;
+        }
+
 
         public MovieDTOBuilder withNote(String note) {
             this.note = note;
@@ -207,6 +223,7 @@ public class MovieDTO {
             movieDTO.setRuntime(runtime);
             movieDTO.setVoteAverage(voteAverage);
             movieDTO.setPoster(poster);
+            movieDTO.setP(p);
             return movieDTO;
         }
     }

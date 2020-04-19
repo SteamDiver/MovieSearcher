@@ -70,21 +70,19 @@ public class MovieUserService implements UserDetailsService {
 
     public DiaryMovie addDiaryMovie(String token, MovieDTO movie) throws Exception {
 
-        if (movieRepo.getById((long) movie.getId()) != null) {
-            throw new Exception("Movie already in favorite movies!");
-        }
-
-        DiaryMovie diaryMovie = new DiaryMovie();
-
         String username = jwtTokenUtil.getUsernameFromToken(token.substring(7));
-
         MovieUser movieUser = movieUserRepo.findByUsername(username);
 
         if (movieUser == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
 
-        diaryMovie.setNote(movie.getNote());
+        if (movieRepo.getByMovieDbIdAndUser(movie.getId(), movieUser) != null) {
+            throw new Exception("Movie already in favorite movies!");
+        }
+
+        DiaryMovie diaryMovie = new DiaryMovie();
+
         diaryMovie.setUser(movieUser);
         diaryMovie.setMovieDbId(movie.getId());
 
@@ -130,6 +128,23 @@ public class MovieUserService implements UserDetailsService {
             movieDTOS.add(movieInfo);
         });
         return movieDTOS;
+    }
+
+    public MovieDTO getDiaryMovie(String token, int movieID) {
+        String username = jwtTokenUtil.getUsernameFromToken(token.substring(7));
+
+        MovieUser movieUser = movieUserRepo.findByUsername(username);
+
+        if (movieUser == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+
+        DiaryMovie dm = movieRepo.getByMovieDbIdAndUser(movieID, movieUser);
+
+        MovieDTO movieInfo = movieDbService.getMovieInfo(dm.getMovieDbId());
+        movieInfo.setNote(dm.getNote());
+
+        return movieInfo;
     }
 
     public void removeDiaryMovie(String token, MovieDTO movie) throws Exception {
