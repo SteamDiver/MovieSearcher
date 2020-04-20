@@ -138,7 +138,6 @@ public class MovieDbService {
 
         List<MovieDTO> movieDTOS = new ArrayList<>();
         movies.forEach(movie -> {
-//            movieDTOS.add(getMovieDTO(new JSONObject(movie.toString()).toString()));
             JSONObject movieInfo = new JSONObject(movie.toString());
             int id = movieInfo.getInt("id");
             String posterPath = movieInfo.get("poster_path").toString();
