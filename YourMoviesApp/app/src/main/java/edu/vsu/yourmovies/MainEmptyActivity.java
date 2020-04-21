@@ -1,4 +1,4 @@
-package com.example.yourmovies;
+package java.edu.vsu.yourmovies;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.yourmovies.ui.user.LoginActivity;
+import java.edu.vsu.yourmovies.ui.user.LoginActivity;
 
 public class MainEmptyActivity extends AppCompatActivity {
 

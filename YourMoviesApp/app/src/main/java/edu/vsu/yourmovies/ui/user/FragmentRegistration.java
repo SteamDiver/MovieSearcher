@@ -1,4 +1,4 @@
-package com.example.yourmovies.ui.user;
+package java.edu.vsu.yourmovies.ui.user;
 
 
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yourmovies.R;
-import com.example.yourmovies.dto.UserDTO;
-import com.example.yourmovies.rest.ApiClient;
-import com.example.yourmovies.rest.YourMoviesApi;
+import java.edu.vsu.yourmovies.dto.UserDTO;
+import java.edu.vsu.yourmovies.rest.ApiClient;
+import java.edu.vsu.yourmovies.rest.YourMoviesApi;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

@@ -1,4 +1,4 @@
-package com.example.yourmovies;
+package java.edu.vsu.yourmovies;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.yourmovies.ui.user.LoginActivity;
+import java.edu.vsu.yourmovies.ui.user.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {

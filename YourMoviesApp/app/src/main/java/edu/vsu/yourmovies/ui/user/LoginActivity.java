@@ -1,4 +1,4 @@
-package com.example.yourmovies.ui.user;
+package java.edu.vsu.yourmovies.ui.user;
 
 import android.os.Bundle;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.example.yourmovies.dto;
+package java.edu.vsu.yourmovies.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

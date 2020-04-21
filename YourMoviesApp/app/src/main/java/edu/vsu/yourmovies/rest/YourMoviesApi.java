@@ -1,10 +1,10 @@
-package com.example.yourmovies.rest;
+package java.edu.vsu.yourmovies.rest;
 
-import com.example.yourmovies.dto.JwtRequest;
-import com.example.yourmovies.dto.JwtResponse;
-import com.example.yourmovies.dto.MovieDTO;
-import com.example.yourmovies.dto.MovieDbGenre;
-import com.example.yourmovies.dto.UserDTO;
+import java.edu.vsu.yourmovies.dto.JwtRequest;
+import java.edu.vsu.yourmovies.dto.JwtResponse;
+import java.edu.vsu.yourmovies.dto.MovieDTO;
+import java.edu.vsu.yourmovies.dto.MovieDbGenre;
+import java.edu.vsu.yourmovies.dto.UserDTO;
 
 import java.util.List;
 

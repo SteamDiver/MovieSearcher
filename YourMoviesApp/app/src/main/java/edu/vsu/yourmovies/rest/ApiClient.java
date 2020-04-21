@@ -1,4 +1,4 @@
-package com.example.yourmovies.rest;
+package java.edu.vsu.yourmovies.rest;
 
 import java.io.IOException;
 

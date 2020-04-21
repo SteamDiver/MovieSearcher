@@ -1,4 +1,4 @@
-package com.example.yourmovies.ui.user;
+package java.edu.vsu.yourmovies.ui.user;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,12 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.yourmovies.MainActivity;
+import java.edu.vsu.yourmovies.MainActivity;
 import com.example.yourmovies.R;
-import com.example.yourmovies.dto.JwtRequest;
-import com.example.yourmovies.dto.JwtResponse;
-import com.example.yourmovies.rest.ApiClient;
-import com.example.yourmovies.rest.YourMoviesApi;
+import java.edu.vsu.yourmovies.dto.JwtRequest;
+import java.edu.vsu.yourmovies.dto.JwtResponse;
+import java.edu.vsu.yourmovies.rest.ApiClient;
+import java.edu.vsu.yourmovies.rest.YourMoviesApi;
 
 import retrofit2.Call;
 import retrofit2.Callback;

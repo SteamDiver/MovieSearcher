@@ -1,4 +1,4 @@
-package com.example.yourmovies.dto;
+package java.edu.vsu.yourmovies.dto;
 
 public class JwtRequest {
     private String username;
