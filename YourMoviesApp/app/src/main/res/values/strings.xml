@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">YourMovies</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_search">Поиск</string>
+    <string name="menu_movies">Дневник</string>
+    <string name="menu_genres">Мои Жанры</string>
+    <string name="menu_logout">Выйти</string>
+    <string name="menu_send">Send</string>
+
+    <string name="tag">email</string>
+    <string name="username">Юзернэйм</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="register">Регистрация</string>
+    <string name="your_name">Юзернэйм</string>
+    <string name="re_type_password">Повторите пароль</string>
+    <string name="swipe_right_for_login">Войти</string>
+</resources>
