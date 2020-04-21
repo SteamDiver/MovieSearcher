@@ -7,20 +7,20 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.example.yourmovies.ui.search.SearchFragment"
+        android:name="java.edu.vsu.yourmovies.ui.search.SearchFragment"
         android:label="@string/menu_search"
         tools:layout="@layout/fragment_search" />
 
 
     <fragment
         android:id="@+id/nav_genres"
-        android:name="com.example.yourmovies.ui.genres.GenresFragment"
+        android:name="java.edu.vsu.yourmovies.ui.genres.GenresFragment"
         android:label="@string/menu_genres"
         tools:layout="@layout/fragment_genres" />
 
     <fragment
         android:id="@+id/nav_movies"
-        android:name="com.example.yourmovies.ui.movies.MoviesDiaryFragment"
+        android:name="java.edu.vsu.yourmovies.ui.movies.MoviesDiaryFragment"
         android:label="@string/menu_movies"
         tools:layout="@layout/fragment_movies" />
 
