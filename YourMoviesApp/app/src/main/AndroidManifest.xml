@@ -25,12 +25,10 @@
         </activity>
         <activity
             android:name=".ui.search.activity.MovieSearchExpandActivity"
-            android:label="Details"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.movies.activity.MovieDiaryExpandActivity"
-            android:label="DiaryDetails"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -44,7 +42,6 @@
         </activity>
         <activity
             android:name=".ui.genres.activity.MovieRecommendationActivity"
-            android:label="DiaryDetails"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
     </application>

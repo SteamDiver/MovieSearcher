@@ -7,26 +7,26 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="java.edu.vsu.yourmovies.ui.search.SearchFragment"
+        android:name="com.example.yourmovies.ui.search.SearchFragment"
         android:label="@string/menu_search"
         tools:layout="@layout/fragment_search" />
 
 
     <fragment
         android:id="@+id/nav_genres"
-        android:name="java.edu.vsu.yourmovies.ui.genres.GenresFragment"
+        android:name="com.example.yourmovies.ui.genres.GenresFragment"
         android:label="@string/menu_genres"
         tools:layout="@layout/fragment_genres" />
 
     <fragment
         android:id="@+id/nav_movies"
-        android:name="java.edu.vsu.yourmovies.ui.movies.MoviesDiaryFragment"
+        android:name="com.example.yourmovies.ui.movies.MoviesDiaryFragment"
         android:label="@string/menu_movies"
         tools:layout="@layout/fragment_movies" />
 
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.example.yourmovies.ui.logout.LogoutFragment"
+        android:name="com.example.yourmovies.ui.user.FragmentLogout"
         android:label="@string/menu_logout"
         tools:layout="@layout/fragment_logout" />
 
