@@ -71,12 +71,13 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenreViewH
                 moviesApi.removeFavoriteGenre(genres.get(position)).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("title", genres.get(position).getName());
+
                         genres.remove(position);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, 1);
 
-                        Map<String, Object> params = new HashMap<>();
-                        params.put("title", genres.get(position).getName());
                         YandexMetrica.reportEvent("GenreRemoved", params);
                     }
 
