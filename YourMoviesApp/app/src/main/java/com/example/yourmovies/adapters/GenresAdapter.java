@@ -17,8 +17,11 @@ import com.example.yourmovies.dto.MovieDbGenre;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
 import com.example.yourmovies.ui.genres.activity.MovieRecommendationActivity;
+import com.yandex.metrica.YandexMetrica;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -54,6 +57,10 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenreViewH
                 intent.putExtra("id", genres.get(position).getId());
                 intent.putExtra("title", genres.get(position).getName());
                 context.startActivity(intent);
+
+                Map<String, Object> params = new HashMap<>();
+                params.put("title", genres.get(position).getName());
+                YandexMetrica.reportEvent("GenreRecommendationsRequest", params);
             }
         });
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +74,10 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenreViewH
                         genres.remove(position);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, 1);
+
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("title", genres.get(position).getName());
+                        YandexMetrica.reportEvent("GenreRemoved", params);
                     }
 
                     @Override

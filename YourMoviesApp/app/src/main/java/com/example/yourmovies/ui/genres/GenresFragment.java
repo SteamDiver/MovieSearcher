@@ -20,9 +20,12 @@ import com.example.yourmovies.adapters.GenresAdapter;
 import com.example.yourmovies.dto.MovieDbGenre;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -87,7 +90,7 @@ public class GenresFragment extends Fragment {
 
         genresSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView parent, View view, final int position, final long id) {
                 moviesApi.addFavoriteGenre(supportedGenres.get(position)).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -96,6 +99,10 @@ public class GenresFragment extends Fragment {
                             public void onResponse(Call<List<MovieDbGenre>> call, Response<List<MovieDbGenre>> response) {
                                 favoriteGenres = (ArrayList<MovieDbGenre>) response.body();
                                 Log.d("12hell", "onItemSelected: " + favoriteGenres.size());
+
+                                Map<String, Object> eventParameters = new HashMap<>();
+                                eventParameters.put("genre", supportedGenres.get(position).getName());
+                                YandexMetrica.reportEvent("GenreAddSuccess", eventParameters);
 
                                 recyclerView.setAdapter(new GenresAdapter(root.getContext(), favoriteGenres));
                             }

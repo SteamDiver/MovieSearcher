@@ -117,7 +117,7 @@ public class MovieDiaryExpandActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MovieDTO> call, Response<MovieDTO> response) {
                 Log.d("DEB", "ADDED");
-                YandexMetrica.reportEvent("MovieNoteAddedSuccess", eventParameters);
+                YandexMetrica.reportEvent("MovieNoteAddSuccess", eventParameters);
             }
 
             @Override
@@ -125,7 +125,7 @@ public class MovieDiaryExpandActivity extends AppCompatActivity {
                 Log.d("DEB", "FAILURE");
                 Map<String, Object> eventParameters = new HashMap<>();
                 eventParameters.put("reason", t.getMessage());
-                YandexMetrica.reportEvent("MovieAddedFailed", eventParameters);
+                YandexMetrica.reportEvent("MovieNoteAddFailed", eventParameters);
             }
         });
     }
