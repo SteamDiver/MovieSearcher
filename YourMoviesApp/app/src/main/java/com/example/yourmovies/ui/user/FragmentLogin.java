@@ -19,6 +19,10 @@ import com.example.yourmovies.dto.JwtRequest;
 import com.example.yourmovies.dto.JwtResponse;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
+import com.yandex.metrica.YandexMetrica;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,6 +78,8 @@ public class FragmentLogin extends Fragment {
                 @Override
                 public void onResponse(Call<JwtResponse> call, Response<JwtResponse> response) {
                     if (response.isSuccessful()) {
+                        YandexMetrica.reportEvent("UserLoginSuccess");
+
                         SharedPreferences prefs = context.getSharedPreferences("token_pref", Context.MODE_PRIVATE);
                         SharedPreferences.Editor edit = prefs.edit();
                         edit.putString("token", response.body().getToken());
@@ -83,13 +89,21 @@ public class FragmentLogin extends Fragment {
                         getContext().startActivity(intent);
                         getActivity().finish();
                     } else {
-                        Toast.makeText(getActivity(), "Login or password is incorrect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+
+                        Map<String, Object> eventParameters = new HashMap<>();
+                        eventParameters.put("reason", "login or password is incorrect");
+                        YandexMetrica.reportEvent("UserLoginFailed", eventParameters);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<JwtResponse> call, Throwable t) {
-                    Toast.makeText(getActivity(), "Login or password is incorrect", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Произошла ошибка при авторизации", Toast.LENGTH_LONG).show();
+
+                    Map<String, Object> eventParameters = new HashMap<>();
+                    eventParameters.put("reason", t.getMessage());
+                    YandexMetrica.reportEvent("UserLoginFailed", eventParameters);
                 }
             });
         }

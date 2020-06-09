@@ -21,6 +21,10 @@ import com.example.yourmovies.R;
 import com.example.yourmovies.dto.MovieDTO;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
+import com.yandex.metrica.YandexMetrica;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -106,15 +110,21 @@ public class MovieDiaryExpandActivity extends AppCompatActivity {
         MovieDTO dto = new MovieDTO();
         dto.setId(id);
         dto.setNote(description.getText().toString());
+        final Map<String, Object> eventParameters = new HashMap<>();
+        eventParameters.put("movie", id);
         moviesApi.addMovieNote(dto).enqueue(new Callback<MovieDTO>() {
             @Override
             public void onResponse(Call<MovieDTO> call, Response<MovieDTO> response) {
                 Log.d("DEB", "ADDED");
+                YandexMetrica.reportEvent("MovieNoteAddedSuccess", eventParameters);
             }
 
             @Override
             public void onFailure(Call<MovieDTO> call, Throwable t) {
                 Log.d("DEB", "FAILURE");
+                Map<String, Object> eventParameters = new HashMap<>();
+                eventParameters.put("reason", t.getMessage());
+                YandexMetrica.reportEvent("MovieAddedFailed", eventParameters);
             }
         });
     }

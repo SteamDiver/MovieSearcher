@@ -16,6 +16,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.yourmovies.ui.user.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.yandex.metrica.YandexMetrica;
+import com.yandex.metrica.YandexMetricaConfig;
 
 public class MainActivity extends AppCompatActivity {
 

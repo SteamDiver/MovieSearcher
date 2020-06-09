@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yourmovies.R;
+import com.yandex.metrica.YandexMetrica;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -14,6 +15,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        YandexMetrica.reportAppOpen(this);
         setContentView(R.layout.activity_login);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -36,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
 
-    }
+    }*/
 }

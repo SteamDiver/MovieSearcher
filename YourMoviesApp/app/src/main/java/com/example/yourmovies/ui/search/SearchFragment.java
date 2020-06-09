@@ -25,9 +25,12 @@ import com.example.yourmovies.adapters.MovieSearchAdapter;
 import com.example.yourmovies.dto.MovieDTO;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
+import com.yandex.metrica.YandexMetrica;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +50,7 @@ public class SearchFragment extends Fragment {
     private RelativeLayout loadingPanel;
     private LinearLayout loadingPanel2;
 
-    private void search(String query) {
+    private void search(final String query) {
         Log.d("DEB", "search: " + query);
 
         loadingPanel2.setVisibility(View.GONE);
@@ -66,6 +69,10 @@ public class SearchFragment extends Fragment {
                             loadingPanel2.setVisibility(View.VISIBLE);
 
                         } else {
+                            Map<String, Object> eventParameters = new HashMap<String, Object>();
+                            eventParameters.put("query", query);
+                            eventParameters.put("moviesCount", movies.size());
+                            YandexMetrica.reportEvent("SearchSuccess", eventParameters);
                             recyclerView.setAdapter(new MovieSearchAdapter(root.getContext(), response.body()));
                         }
                     }
@@ -75,6 +82,10 @@ public class SearchFragment extends Fragment {
                         loadingPanel.setVisibility(View.GONE);
 
                         Log.d("DEB", "onResponse: " + t.getMessage());
+
+                        Map<String, Object> eventParameters = new HashMap<String, Object>();
+                        eventParameters.put("reason", t.getMessage());
+                        YandexMetrica.reportEvent("SearchFailed", eventParameters);
                     }
                 });
     }

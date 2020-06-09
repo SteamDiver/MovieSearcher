@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,6 +17,10 @@ import com.example.yourmovies.R;
 import com.example.yourmovies.dto.UserDTO;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
+import com.yandex.metrica.YandexMetrica;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -61,6 +66,8 @@ public class FragmentRegistration extends Fragment {
                 moviesApi.register(userDTO).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        YandexMetrica.reportEvent("UserRegisterSuccess");
+
                         Log.d("DEB", "onResponse: SUCCESFULL REGISTER");
                         Fragment fragment = new FragmentLogin();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -72,11 +79,13 @@ public class FragmentRegistration extends Fragment {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                        Map<String, Object> eventParameters = new HashMap<>();
+                        eventParameters.put("reason", t.getMessage());
+                        YandexMetrica.reportEvent("UserRegisterFailed", eventParameters);
                     }
                 });
             } else {
-
+                Toast.makeText(getActivity(), "Пароль и подверждение не сопадают", Toast.LENGTH_LONG).show();
             }
         }
     }

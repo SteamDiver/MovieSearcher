@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.yourmovies.MainEmptyActivity;
 import com.example.yourmovies.R;
+import com.yandex.metrica.YandexMetrica;
 
 public class FragmentLogout extends Fragment {
     private Context context;
@@ -47,6 +48,7 @@ public class FragmentLogout extends Fragment {
     private void logout() {
         context.getSharedPreferences("token_pref", Context.MODE_PRIVATE).edit().clear().apply();
 
+        YandexMetrica.reportEvent("UserLogout");
         Intent intent = new Intent(getContext(), MainEmptyActivity.class);
         getContext().startActivity(intent);
         getActivity().finish();

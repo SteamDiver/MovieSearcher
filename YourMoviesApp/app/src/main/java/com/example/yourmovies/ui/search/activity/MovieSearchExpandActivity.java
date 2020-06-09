@@ -20,6 +20,10 @@ import com.example.yourmovies.R;
 import com.example.yourmovies.dto.MovieDTO;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
+import com.yandex.metrica.YandexMetrica;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,18 +100,28 @@ public class MovieSearchExpandActivity extends AppCompatActivity {
     }
 
     public void addMovie(final View view) {
-        int id = getIntent().getIntExtra("id", 0);
+        final int id = getIntent().getIntExtra("id", 0);
         MovieDTO dto = new MovieDTO();
         dto.setId(id);
+
         moviesApi.addMovieToDiary(dto).enqueue(new Callback<MovieDTO>() {
             @Override
             public void onResponse(Call<MovieDTO> call, Response<MovieDTO> response) {
                 Toast.makeText(view.getContext(), "Added", Toast.LENGTH_SHORT).show();
+
+                final Map<String, Object> eventParameters = new HashMap<>();
+                eventParameters.put("movie", id);
+                YandexMetrica.reportEvent("MovieAddSuccess", eventParameters);
             }
 
             @Override
             public void onFailure(Call<MovieDTO> call, Throwable t) {
                 Log.d("DEB", "FAILURE");
+
+                final Map<String, Object> eventParameters = new HashMap<>();
+                eventParameters.put("movie", id);
+                eventParameters.put("reason", t.getMessage());
+                YandexMetrica.reportEvent("MovieAddFailed", eventParameters);
             }
         });
     }
