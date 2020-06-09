@@ -13,29 +13,26 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.yourmovies.R;
 import com.example.yourmovies.adapters.MovieSearchAdapter;
 import com.example.yourmovies.dto.MovieDTO;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
 import com.yandex.metrica.YandexMetrica;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class SearchFragment extends Fragment {
 
@@ -141,14 +138,5 @@ public class SearchFragment extends Fragment {
             state.putSerializable("searchMovies", (Serializable) movies);
             state.putString("searchQuery", queryField);
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d("DEB", "SAVE BUNDLE");
-
-        outState.putSerializable("searchMovies", (Serializable) movies);
-        outState.putString("searchQuery", queryField);
     }
 }

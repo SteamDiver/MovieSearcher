@@ -7,28 +7,21 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.yourmovies.R;
 import com.example.yourmovies.dto.MovieDTO;
 import com.example.yourmovies.rest.ApiClient;
 import com.example.yourmovies.rest.YourMoviesApi;
 import com.yandex.metrica.YandexMetrica;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MovieSearchExpandActivity extends AppCompatActivity {
 
@@ -44,10 +37,10 @@ public class MovieSearchExpandActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<MovieDTO> call, Response<MovieDTO> response) {
 
-                    //TODO something wrong here
                     if (response.body().getPoster() != null) {
                         byte[] decodedPoster = Base64.decode(response.body().getPoster(), Base64.DEFAULT);
-                        poster.setImageBitmap(BitmapFactory.decodeByteArray(decodedPoster, 0, decodedPoster.length));
+                        Bitmap bm = BitmapFactory.decodeByteArray(decodedPoster, 0, decodedPoster.length);
+                        poster.setImageBitmap(Bitmap.createScaledBitmap(bm, 320, 400, false));
                     } else {
                         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.noimage);
                         poster.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 342, 513, false));

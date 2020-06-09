@@ -48,7 +48,8 @@ public class MovieDiaryExpandActivity extends AppCompatActivity {
                 public void onResponse(Call<MovieDTO> call, Response<MovieDTO> response) {
                     if (response.body().getPoster() != null) {
                         byte[] decodedPoster = Base64.decode(response.body().getPoster(), Base64.DEFAULT);
-                        poster.setImageBitmap(BitmapFactory.decodeByteArray(decodedPoster, 0, decodedPoster.length));
+                        Bitmap bm = BitmapFactory.decodeByteArray(decodedPoster, 0, decodedPoster.length);
+                        poster.setImageBitmap(Bitmap.createScaledBitmap(bm, 320, 400, false));
                     } else {
                         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.noimage);
                         poster.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 342, 513, false));

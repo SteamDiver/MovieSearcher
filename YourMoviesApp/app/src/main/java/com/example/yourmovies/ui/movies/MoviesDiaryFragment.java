@@ -83,15 +83,16 @@ public class MoviesDiaryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             recyclerView.setAdapter(new MovieSearchAdapter(root.getContext(), (List<MovieDTO>) savedInstanceState.getSerializable("searchMovies")));
-            searchField.setText((String) savedInstanceState.getSerializable("searchQuery"));
         }
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putSerializable("searchMovies", (Serializable) movies);
-        outState.putString("searchQuery", queryField);
+    public void onPause() {
+        super.onPause();
+        Log.d("DEB", "PAUSE");
+        if (movies != null && movies.size() != 0) {
+            state = new Bundle();
+            state.putSerializable("searchMovies", (Serializable) movies);
+        }
     }
 }
